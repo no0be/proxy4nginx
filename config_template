@@ -1,0 +1,36 @@
+server {
+    listen 80;
+
+    server_name proxy.samyonline.be;
+
+    # redirect every request to HTTPS
+    return 301 https://$host$request_uri;
+}
+
+server {
+
+    listen 443;
+
+    server_name proxy.samyonline.be;
+
+    ssl_certificate           /etc/letsencrypt/live/vps.samyonline.be/fullchain.pem;
+    ssl_certificate_key       /etc/letsencrypt/live/vps.samyonline.be/privkey.pem;
+
+    include /etc/nginx/ssl-configuration.conf;
+
+    access_log            /var/log/nginx/jenkins.access.log;
+
+    location / {
+
+      proxy_set_header        Host $host;
+      proxy_set_header        X-Real-IP $remote_addr;
+      proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header        X-Forwarded-Proto $scheme;
+
+      # Fix the “It appears that your reverse proxy set up is broken" error.
+
+      proxy_pass          $_PROXYPASS_$;
+      proxy_read_timeout  90;
+
+    }
+}
