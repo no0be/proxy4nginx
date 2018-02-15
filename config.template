@@ -21,7 +21,7 @@ server {
     ssl_certificate           secret/fullchain.pem;
     ssl_certificate_key       secret/privkey.pem;
 
-    include shared/ssl-configuration.conf;
+    include shared-config/ssl.conf;
 
     access_log /var/log/nginx/proxy.access.log;
     error_log /var/log/nginx/proxy.error.log;
