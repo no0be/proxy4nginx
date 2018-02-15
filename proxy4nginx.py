@@ -76,5 +76,5 @@ args = parser.parse_args()
 args.func(args)
 
 # reload nginx configuration
-if args.verbose: print 'Reload nginx configuration"
+if args.verbose: print 'Reload nginx configuration'
 call("systemctl reload nginx", shell=True)
