@@ -13,8 +13,7 @@ from subprocess import call
 install_path	= '/opt/proxy4nginx'
 vhost_path	= '/etc/nginx/conf.d'
 vhost_name	= 'proxy'
-
-template	= 'config.template'
+template	= 'config.local'
 
 # unify paths with trailing /
 if not vhost_path.endswith('/'): vhost_path += '/'

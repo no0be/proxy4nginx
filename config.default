@@ -1,7 +1,18 @@
+#----------------------------------------------------------------------------------
+# This file is an example of how to construct your vhost configuration template.
+# DO NOT EDIT AS IT MIGHT BE OVERWRITTEN BY YOUR NEXT GIT PULL !!!
+#
+# By default, proxy4nginx will try to load configuration in 'config.local' so:
+#
+#   $ cp config.template config.local
+#
+# Then edit 'config.local' instead.
+#----------------------------------------------------------------------------------
+
 server {
     listen 80;
 
-    server_name proxy.samyonline.be;
+    server_name proxy.proxy4nginx.com;
     server_tokens off;
 
     access_log /var/log/nginx/proxy.access.log;
@@ -15,7 +26,7 @@ server {
 
     listen 443;
 
-    server_name proxy.samyonline.be;
+    server_name proxy.proxy4nginx.com;
     server_tokens off;
 
     ssl_certificate           secret/fullchain.pem;
