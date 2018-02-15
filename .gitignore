@@ -1,2 +1,3 @@
 proxy4nginx.conf
 config.local
+vhost.conf

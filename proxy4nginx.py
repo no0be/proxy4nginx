@@ -32,11 +32,11 @@ def proxy_enable(args):
 	proxy_pass += args.URL
 
 	# edit the nginx config file with the new value based on template
-	if args.verbose: print 'Edit %s with \'%s\' as new proxy_pass destination' % (vhost_name + ".conf", proxy_pass)
+	if args.verbose: print 'Edit vhost.conf with \'%s\' as new proxy_pass destination' % (proxy_pass)
 
 	replacement = {'$_PROXYPASS_$':proxy_pass}
 
-	with open(install_path + template) as infile, open(install_path + vhost_name + ".conf", 'w') as outfile:
+	with open(install_path + template) as infile, open(install_path + "vhost.conf", 'w') as outfile:
 	    for line in infile:
 	        for src, target in replacement.iteritems():
 	            line = line.replace(src, target)
@@ -45,7 +45,7 @@ def proxy_enable(args):
 	# create the symlink in nginx vhost directory
 	if not os.path.isfile(vhost_path + vhost_name + ".conf"):
 		if args.verbose: print 'Create the %s symlink' % (vhost_name + ".conf")
-		os.symlink(install_path + vhost_name + ".conf", vhost_path + vhost_name + ".conf")
+		os.symlink(install_path + "vhost.conf", vhost_path + vhost_name + ".conf")
 
 def proxy_disable(args):
         # delete the symlink in nginx vhost directory
