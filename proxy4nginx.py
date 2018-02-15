@@ -45,7 +45,7 @@ def proxy_enable(args):
 
 	# create the symlink in nginx vhost directory
 	if not os.path.isfile(vhost_path + vhost_name + ".conf"):
-		if args.verbose: print 'Create the %s symlink' % vhost_name + ".conf"
+		if args.verbose: print 'Create the %s symlink' % (vhost_name + ".conf")
 		os.symlink(install_path + vhost_name + ".conf", vhost_path + vhost_name + ".conf")
 
 def proxy_disable(args):
@@ -55,7 +55,7 @@ def proxy_disable(args):
 		sys.exit()
 
 	else:
-		if args.verbose: print 'Delete the %s symlink' % vhost_path + vhost_name + ".conf"
+		if args.verbose: print 'Delete the %s symlink' % (vhost_path + vhost_name + ".conf")
 		os.remove(vhost_path + vhost_name + ".conf")
 
 # args management
@@ -76,4 +76,5 @@ args = parser.parse_args()
 args.func(args)
 
 # reload nginx configuration
+if args.verbose: print 'Reload nginx configuration"
 call("systemctl reload nginx", shell=True)
