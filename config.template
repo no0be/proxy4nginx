@@ -2,6 +2,10 @@ server {
     listen 80;
 
     server_name proxy.samyonline.be;
+    server_tokens off;
+
+    access_log /var/log/nginx/proxy.access.log;
+    error_log /var/log/nginx/proxy.error.log;
 
     # redirect every request to HTTPS
     return 301 https://$host$request_uri;
@@ -12,13 +16,15 @@ server {
     listen 443;
 
     server_name proxy.samyonline.be;
+    server_tokens off;
 
-    ssl_certificate           /etc/letsencrypt/live/vps.samyonline.be/fullchain.pem;
-    ssl_certificate_key       /etc/letsencrypt/live/vps.samyonline.be/privkey.pem;
+    ssl_certificate           secret/fullchain.pem;
+    ssl_certificate_key       secret/privkey.pem;
 
-    include /etc/nginx/ssl-configuration.conf;
+    include shared/ssl-configuration.conf;
 
-    access_log            /var/log/nginx/proxy.access.log;
+    access_log /var/log/nginx/proxy.access.log;
+    error_log /var/log/nginx/proxy.error.log;
 
     location / {
 
