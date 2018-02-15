@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------------
-# This file is an example of how to construct your vhost configuration template.
+# This file is an example of how to build your vhost configuration template.
 # DO NOT EDIT AS IT MIGHT BE OVERWRITTEN BY YOUR NEXT GIT PULL !!!
 #
 # By default, proxy4nginx will try to load configuration in 'config.local' so:
